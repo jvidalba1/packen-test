@@ -2,6 +2,7 @@ class Visitor < ActiveRecord::Base
   belongs_to :prize
 
   enum status: [:winner, :loser]
+  # after_save :won?
 
   def increment
     self.subscriber_number = first_visitor? ? 1 : Visitor.count + 1
@@ -11,6 +12,7 @@ class Visitor < ActiveRecord::Base
     Visitor.count == 0
   end
 
-  def won?
+  def prize
+    Condition.all.select {|c| c.subscriber_number == self.subscriber_number }
   end
 end

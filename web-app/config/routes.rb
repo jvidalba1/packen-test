@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :prizes
+  resources :conditions
 
   devise_for :admins
   # The priority is based upon order of creation: first created -> highest priority.

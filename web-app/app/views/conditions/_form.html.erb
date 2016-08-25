@@ -1,0 +1,20 @@
+<%= form_for(@condition) do |f| %>
+  <% if @condition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@condition.errors.count, "error") %> prohibited this condition from being saved:</h2>
+
+      <ul>
+      <% @condition.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>Subscriber number to win: <%= f.text_field :subscriber_number %></p>
+  <p>Prize: <%= f.select :prize_id, options_from_collection_for_select(Prize.all, "id", "name") %></p>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
