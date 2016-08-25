@@ -11,8 +11,12 @@
     </div>
   <% end %>
 
-  <p>Subscriber number to win: <%= f.text_field :subscriber_number %></p>
-  <p>Prize: <%= f.select :prize_id, options_from_collection_for_select(Prize.all, "id", "name") %></p>
+  <p>Number: <%= f.text_field :subscriber_number %></p>
+  <p>Type: <%= f.select :type_cond, options_for_select(["normal", "multiplo"]) %></p>
+  <p>Add rule: <%= f.select :rule, options_for_select(["si", "no"]) %></p>
+  <p>Prize <%= f.select :prize_id, Prize.all.map { |p| [p.name, p.id] } %></p>
+
+  
 
   <div class="actions">
     <%= f.submit %>
