@@ -8,9 +8,10 @@ class VisitorsController < ApplicationController
   def create
     @visitor = Visitor.new(params[:visitor].permit(:email))
     @visitor.increment
-
-    winner_msg = if @visitor.prize.any?
-      "You have earned a prize (#{@visitor.prize.first.prize.name})"
+    @visitor.apply_conditions
+    
+    winner_msg = if @visitor.prize
+      "You have earned a prize (#{@visitor.prize.name})"
     else
       "You haven't earned a prize, sorry."
     end

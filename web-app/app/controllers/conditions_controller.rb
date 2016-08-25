@@ -4,7 +4,7 @@ class ConditionsController < ApplicationController
   before_action :set_condition, only: [:show, :edit, :update, :destroy]
 
   def index
-    @conditions = Condition.all
+    @conditions = Condition.all.includes(:prize)
   end
 
   def new
@@ -15,13 +15,29 @@ class ConditionsController < ApplicationController
     @condition = Condition.new(condition_params)
     # raise "oelo"
     if @condition.save
-      redirect_to @condition, notice: 'Prize was successfully created.'
+      redirect_to @condition, notice: 'Condition was successfully created.'
     else
       render :new
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @condition.update(condition_params)
+      redirect_to @condition, notice: 'Condition was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   def show
+  end
+
+  def destroy
+    @condition.destroy
+    redirect_to conditions_url, notice: 'Condition was successfully destroyed.'
   end
 
   private
@@ -30,7 +46,7 @@ class ConditionsController < ApplicationController
     end
 
     def condition_params
-      params.require(:condition).permit(:prize_id, :subscriber_number)
+      params.require(:condition).permit(:subscriber_number, :type_cond, :rule, :prize_id)
     end
 
 end

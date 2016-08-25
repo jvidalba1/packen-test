@@ -27,7 +27,7 @@ class PrizesController < ApplicationController
   # POST /prizes.json
   def create
     @prize = Prize.new(prize_params)
-
+    
     respond_to do |format|
       if @prize.save
         format.html { redirect_to @prize, notice: 'Prize was successfully created.' }
@@ -71,6 +71,6 @@ class PrizesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prize_params
-      params.require(:prize).permit(:stock, :name)
+      params.require(:prize).permit(:stock, :name, :condition_id)
     end
 end
