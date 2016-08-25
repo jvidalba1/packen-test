@@ -3,12 +3,12 @@ class Visitor < ActiveRecord::Base
 
   enum status: [:winner, :loser]
 
-  def visitors_count
-
+  def increment
+    self.subscriber_number = first_visitor? ? 1 : Visitor.count + 1
   end
 
   def first_visitor?
-    self.count == 0
+    Visitor.count == 0
   end
 
   def won?

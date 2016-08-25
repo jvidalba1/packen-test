@@ -7,7 +7,8 @@ class VisitorsController < ApplicationController
 
   def create
     @visitor = Visitor.new(params[:visitor].permit(:email))
-    raise "oelo"
+    @visitor.increment
+    
     if @visitor.save
     else
     end
