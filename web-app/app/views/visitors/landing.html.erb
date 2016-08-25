@@ -1,0 +1,8 @@
+<h1>Store name</h1>
+<p>Paragraph with information</p>
+
+<%# raise "oelo" %>
+<%= form_for @visitor do |f| %>
+  <p>Email: <%= f.text_field :email %></p>
+  <p><%= f.submit "Subscribe!" %></p>
+<% end %>
