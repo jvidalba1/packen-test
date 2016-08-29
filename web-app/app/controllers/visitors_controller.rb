@@ -1,5 +1,5 @@
 class VisitorsController < ApplicationController
-  # before_action :authenticate_admin!
+  before_action :landing_page, only: [:landing, :create]
 
   def landing
     @visitor = Visitor.new
@@ -23,5 +23,10 @@ class VisitorsController < ApplicationController
     else
       render 'landing'
     end
+  end
+
+  private
+  def landing_page
+    redirect_to admins_path if admin_signed_in?
   end
 end
