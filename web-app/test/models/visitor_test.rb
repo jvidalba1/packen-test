@@ -10,6 +10,7 @@
 #  updated_at        :datetime         not null
 #  prize_id          :integer
 #  condition_id      :integer
+#  created_on        :date
 #
 
 require 'test_helper'

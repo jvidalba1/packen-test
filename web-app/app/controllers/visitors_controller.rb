@@ -6,6 +6,7 @@ class VisitorsController < ApplicationController
   end
 
   def create
+
     @visitor = Visitor.new(params[:visitor].permit(:email))
     @visitor.increment
     @visitor.apply_conditions
@@ -20,6 +21,7 @@ class VisitorsController < ApplicationController
       flash[:notice] = 'You have been subscribed successfully.' + winner_msg
       redirect_to root_path
     else
+      render 'landing'
     end
   end
 end

@@ -1,8 +1,18 @@
 <h1>Store name</h1>
 <p>Paragraph with information</p>
 
-<%# raise "oelo" %>
 <%= form_for @visitor do |f| %>
+  <% if @visitor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@visitor.errors.count, "error") %> prohibited this visitor from being saved:</h2>
+
+      <ul>
+      <% @visitor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <p>Email: <%= f.text_field :email %></p>
   <p><%= f.submit "Subscribe!" %></p>
 <% end %>

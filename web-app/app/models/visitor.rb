@@ -10,6 +10,7 @@
 #  updated_at        :datetime         not null
 #  prize_id          :integer
 #  condition_id      :integer
+#  created_on        :date
 #
 
 class Visitor < ActiveRecord::Base
@@ -17,6 +18,8 @@ class Visitor < ActiveRecord::Base
   belongs_to :condition
 
   enum status: [:winner, :loser]
+
+  validates_uniqueness_of :email, conditions: -> { where(created_on: Date.today) }
 
   def increment
     self.subscriber_number = first_visitor? ? 1 : Visitor.count + 1
