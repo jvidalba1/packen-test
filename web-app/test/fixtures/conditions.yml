@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: conditions
+#
+#  id                :integer          not null, primary key
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  subscriber_number :integer
+#  prize_id          :integer
+#  type_cond         :string
+#  rule              :string
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined.  If you add columns to the
