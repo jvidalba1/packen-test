@@ -27,8 +27,8 @@
   </div>
   
   <div class="form-group">
-     <%= f.label :prize_id %>
-    <%= f.select :prize_id, Prize.all.map { |p| [p.name, p.id, @condition.prize_id] }, {}, { :class => 'form-control' } %>
+    <%= f.label :prize_id %>
+    <%= f.select :prize_id, options_for_select((Prize.all.map { |p| [p.name, p.id] }), @condition.prize_id),{}, { :class => 'form-control' } %>
   </div>
 
   <div class="actions">
