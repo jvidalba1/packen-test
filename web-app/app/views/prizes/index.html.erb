@@ -1,14 +1,12 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Prizes</h1>
-
-<table>
+<%= link_to 'New Prize', new_prize_path, class: "btn btn-default btn-md" %>
+<table class="table">
   <thead>
     <tr>
-      <th>Id</th>
+      <th>#id</th>
       <th>Stock</th>
       <th>Name</th>
-      <th colspan="3"></th>
+      <th colspan="3">Options</th>
     </tr>
   </thead>
 
@@ -18,14 +16,13 @@
         <td><%= prize.id %></td>
         <td><%= prize.stock %></td>
         <td><%= prize.name %></td>
-        <td><%= link_to 'Show', prize %></td>
-        <td><%= link_to 'Edit', edit_prize_path(prize) %></td>
-        <td><%= link_to 'Destroy', prize, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="...">
+            <%= link_to 'Edit', edit_prize_path(prize), class: "btn btn-sm btn-default" %>
+            <%= link_to 'Destroy', prize, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Prize', new_prize_path %>

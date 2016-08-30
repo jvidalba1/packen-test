@@ -1,16 +1,15 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Conditions</h1>
+<%= link_to 'New condition', new_condition_path, class: "btn btn-default btn-md"  %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Id</th>
+      <th>#id</th>
       <th>Number</th>
       <th>Type</th>
       <th>Rule</th>
       <th>Prize</th>
-      <th colspan="3"></th>
+      <th colspan="3">Options</th>
     </tr>
   </thead>
 
@@ -22,14 +21,13 @@
         <td><%= condition.type_cond.try(:titleize) %></td>
         <td><%= condition.rule.try(:titleize) %></td>
         <td><%= condition.prize.try(:name) %> </td>
-        <td><%= link_to 'Show', condition %></td>
-        <td><%= link_to 'Edit', edit_condition_path(condition) %></td>
-        <td><%= link_to 'Destroy', condition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="...">
+            <%= link_to 'Edit', edit_condition_path(condition), class: "btn btn-sm btn-default" %>
+            <%= link_to 'Destroy', condition, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New condition', new_condition_path %>

@@ -11,10 +11,19 @@
     </div>
   <% end %>
 
-  <p>Stock: <%= f.text_field :stock %></p>
-  <p>Name: <%= f.text_field :name %></p>
+  <div class="form-group">
+    <%= f.label :stock %>
+    <%= f.text_field :stock, class: "form-control" %>
+    
+  </div>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "btn btn-default" %>
+    <%= link_to 'Back', prizes_path, class: "btn btn-default" %>
   </div>
 <% end %>
