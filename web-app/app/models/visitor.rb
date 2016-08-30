@@ -28,13 +28,15 @@ class Visitor < ActiveRecord::Base
   end
 
   def apply_conditions
-    Condition.all.each do |c|
+    conditions_with_subscriber_number.each do |c|
       if (c.type_cond.eql? 'normal') && (self.subscriber_number == c.subscriber_number)
         win_prize(c)
       elsif (c.type_cond.eql? 'multiplo') && (c.rule.eql? 'no') && (is_multiple?(c.subscriber_number))
         win_prize(c)
       elsif (c.type_cond.eql? 'multiplo') && (c.rule.eql? 'si') && (is_multiple?(c.subscriber_number)) && (self.subscriber_number > 1000)
         win_prize(c)
+      else
+        self.loser!
       end
     end
   end
@@ -45,6 +47,10 @@ class Visitor < ActiveRecord::Base
       self.condition = c
       self.winner!
       c.prize.decrement!(:stock, 1)
+    end
+
+    def conditions_with_subscriber_number
+      Condition.select { |condition| condition.subscriber_number == self.subscriber_number }
     end
 
     def first_visitor?
