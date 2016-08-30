@@ -14,4 +14,7 @@
 class Condition < ActiveRecord::Base
   has_many :visitors
   belongs_to :prize
+
+  validates_presence_of :subscriber_number, :prize_id, :type_cond, :rule
+  validates_numericality_of :subscriber_number
 end

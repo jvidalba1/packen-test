@@ -9,11 +9,6 @@ class PrizesController < ApplicationController
     @prizes = Prize.all
   end
 
-  # GET /prizes/1
-  # GET /prizes/1.json
-  def show
-  end
-
   # GET /prizes/new
   def new
     @prize = Prize.new
@@ -30,7 +25,7 @@ class PrizesController < ApplicationController
     
     respond_to do |format|
       if @prize.save
-        format.html { redirect_to @prize, notice: 'Prize was successfully created.' }
+        format.html { redirect_to prizes_path, notice: 'Prize was successfully created.' }
         format.json { render :show, status: :created, location: @prize }
       else
         format.html { render :new }

@@ -1,7 +1,7 @@
 class ConditionsController < ApplicationController
 
   before_action :authenticate_admin!
-  before_action :set_condition, only: [:show, :edit, :update, :destroy]
+  before_action :set_condition, only: [:edit, :update, :destroy]
 
   def index
     @conditions = Condition.all.includes(:prize)
@@ -13,9 +13,9 @@ class ConditionsController < ApplicationController
 
   def create
     @condition = Condition.new(condition_params)
-    # raise "oelo"
+    
     if @condition.save
-      redirect_to @condition, notice: 'Condition was successfully created.'
+      redirect_to conditions_path, notice: 'Condition was successfully created.'
     else
       render :new
     end
@@ -26,13 +26,10 @@ class ConditionsController < ApplicationController
 
   def update
     if @condition.update(condition_params)
-      redirect_to @condition, notice: 'Condition was successfully updated.'
+      redirect_to conditions_path, notice: 'Condition was successfully updated.'
     else
       render :edit
     end
-  end
-
-  def show
   end
 
   def destroy

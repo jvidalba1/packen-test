@@ -13,12 +13,10 @@ class VisitorsController < ApplicationController
     
     winner_msg = if @visitor.prize
       "You have earned a prize (#{@visitor.prize.name})"
-    else
-      "You haven't earned a prize, sorry."
     end
 
     if @visitor.save
-      flash[:notice] = 'You have been subscribed successfully.' + winner_msg
+      flash[:notice] = 'You have been subscribed successfully.' + (winner_msg || "")
       redirect_to root_path
     else
       render 'landing'
@@ -27,6 +25,6 @@ class VisitorsController < ApplicationController
 
   private
   def landing_page
-    redirect_to admins_path if admin_signed_in?
+    redirect_to prizes_path if admin_signed_in?
   end
 end

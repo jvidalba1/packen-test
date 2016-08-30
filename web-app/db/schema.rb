@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829205541) do
+ActiveRecord::Schema.define(version: 20160830051223) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 20160829205541) do
   create_table "visitors", force: :cascade do |t|
     t.string   "email"
     t.integer  "subscriber_number"
-    t.integer  "status"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer  "status",            default: 1
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "prize_id"
     t.integer  "condition_id"
     t.date     "created_on"

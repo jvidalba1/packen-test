@@ -19,7 +19,9 @@ class Visitor < ActiveRecord::Base
 
   enum status: [:winner, :loser]
 
-  validates_uniqueness_of :email, conditions: -> { where(created_on: Date.today) }
+  validates :email, presence: true
+  validates_uniqueness_of :email, conditions: -> { where(created_on: Date.today) }, message: "has already been taken today"
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   def increment
     self.subscriber_number = first_visitor? ? 1 : Visitor.count + 1
