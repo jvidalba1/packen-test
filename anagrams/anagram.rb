@@ -38,14 +38,28 @@ class Anagram
         end
       end
     end 
-    display(words_matched)
+    words_matched
   end
 
-  def display(anagrams)
+  def ananagrams
+    @words - anagrams
+  end
+
+  def display(words)
     text = ""
-    anagrams.each_slice(2) { |slice| text << "#{slice[0]}, #{slice[1]}\n" }
+    words.each_slice(2) { |slice| text << "#{slice[0]}, #{slice[1]}\n" }
     text
   end
 end
 
-# puts Anagram.new("words.txt").anagrams
+anagram = Anagram.new("words.txt")
+
+puts "Anagrams..."
+puts anagram.display(anagram.anagrams)
+
+puts "\n"
+
+puts "Ananagrams..."
+puts anagram.display(anagram.ananagrams)
+
+
